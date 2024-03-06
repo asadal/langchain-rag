@@ -6,5 +6,9 @@ tiktoken  # For embeddings
 ollama
 langchain-openai
 langchain-community
+<<<<<<< HEAD
 pysqlite3-binary
 streamlit
+=======
+pysqlite3-binary
+>>>>>>> 6e6a58b (add chroma db)
