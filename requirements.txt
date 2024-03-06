@@ -4,3 +4,5 @@ chromadb # Vector storage
 openai # For embeddings
 tiktoken  # For embeddings
 ollama
+langchain-openai
+langchain-community

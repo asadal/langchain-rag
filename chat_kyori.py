@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain.vectorstores.chroma import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 
 CHROMA_PATH = "chroma"
@@ -27,7 +27,9 @@ def chat_with_db(query_text):
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
     model = ChatOpenAI()
-    response_text = model.predict(prompt)
+    response = model.invoke(prompt)  # `invoke` 메서드 사용
+    # 응답에서 'content' 키의 값을 반환
+    response_text = response.content
     return response_text
 
 def main():
