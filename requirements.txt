@@ -6,3 +6,4 @@ tiktoken  # For embeddings
 ollama
 langchain-openai
 langchain-community
+db-sqlite3
