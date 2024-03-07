@@ -35,7 +35,7 @@ def chat_with_ollama(query_text):
     # llm = Ollama(model="llama2")  # 모델 식별자 확인 필요
     model = ChatOllama(model="gemma:2b")  # ChatOllama의 정확한 초기화 방법 확인 필요
     response_text = model.invoke(prompt)
-    return response_text
+    return response_text.content
 
 def main():
     st.title("Chat with Kyori")
