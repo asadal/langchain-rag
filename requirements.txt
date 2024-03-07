@@ -6,4 +6,5 @@ tiktoken  # For embeddings
 ollama
 langchain-openai
 langchain-community
+pysqlite3-binary
 streamlit
