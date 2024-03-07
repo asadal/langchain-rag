@@ -3,7 +3,7 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-# from create_database import generate_data_store
+from create_database import generate_data_store
 import os
 
 # these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
@@ -47,7 +47,7 @@ def main():# title nad fabicon
     
     st.title("Chat with Kyori")
     
-    # generate_data_store()
+    generate_data_store()
     
     if 'chat_history' not in st.session_state:
             st.session_state.chat_history = []
