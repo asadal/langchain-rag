@@ -185,3 +185,6 @@ https://support.hani.co.kr/introduce/index.html
 
 https://support.hani.co.kr/hani/support.hani
 
+### 한겨레 브랜드 스토어 주소는(웹스토어)
+
+https://smartstore.naver.com/hankyoreh
