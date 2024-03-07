@@ -3,7 +3,7 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-from create_database import generate_chroma_db
+from create_database import generate_data_store
 
 CHROMA_PATH = "chroma"
 
@@ -41,7 +41,7 @@ def main():# title nad fabicon
     
     st.title("Chat with Kyori")
     
-    generate_chroma_db()
+    generate_data_store()
     
     if 'chat_history' not in st.session_state:
             st.session_state.chat_history = []
