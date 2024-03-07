@@ -4,6 +4,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 # from create_database import generate_data_store
+import os
 
 # these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
 __import__('pysqlite3')
