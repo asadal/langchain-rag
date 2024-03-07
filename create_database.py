@@ -12,7 +12,7 @@ CHROMA_PATH = "chroma"
 DATA_PATH = "data/books"
 
 
-def main():
+def generate_chrma_db():
     generate_data_store()
 
 
@@ -59,4 +59,4 @@ def save_to_chroma(chunks: list[Document]):
 
 
 if __name__ == "__main__":
-    main()
+    generate_chrma_db()
