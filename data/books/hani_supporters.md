@@ -185,6 +185,10 @@ https://support.hani.co.kr/introduce/index.html
 
 https://support.hani.co.kr/hani/support.hani
 
-### 한겨레 브랜드 스토어 주소는(웹스토어)
+### 한겨레 브랜드 스토어 주소는(한겨레 웹스토어)
 
 https://smartstore.naver.com/hankyoreh
+
+### 한겨레 굿즈를 사고 싶어
+
+한겨레 네이버 브랜드 스토어에서 구매할 수 있습니다. 주소는 https://smartstore.naver.com/hankyoreh 입니다.
