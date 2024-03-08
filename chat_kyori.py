@@ -41,14 +41,15 @@ def chat_with_db(query_text):
 
 def main():# title nad fabicon
     st.set_page_config(page_title = "Hani Kyori Bot", page_icon = "https://img.hani.co.kr/imgdb/original/2024/0116/1817053905854034.png")
-    
+
     # featured image
     st.image("https://flexible.img.hani.co.kr/flexible/normal/240/240/imgdb/original/2021/0524/20210524502287.jpg", width=100)
-    
-    st.title("Chat with Kyori")
-    
+
+    st.title("겨리봇")
+    st.markdown("한겨레 후원회원 '서포터즈 벗'을 위한 인공지능 챗봇입니다. 후원회원 관련 궁금한 점을 물어보세요.")
+
     # generate_data_store()
-    
+
     if 'chat_history' not in st.session_state:
             st.session_state.chat_history = []
 
