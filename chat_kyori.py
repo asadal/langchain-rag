@@ -59,13 +59,13 @@ def main():# title nad fabicon
 
     # `st.chat_input`으로 사용자 입력 받기.
     if prompt := st.chat_input("한겨레 후원회원이 뭔가요?"):
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar="🧑"):
             st.markdown(prompt)
             st.session_state.chat_history.append({"role": "user", "message": prompt})
     # user_input = st.chat_input("Ask Kyori:", key="chat_input")
 
         # 챗봇으로부터 응답 받기
-        with st.chat_message("Kyori"):
+        with st.chat_message("Kyori", avatar="images/kyori.png"):
             response = chat_with_db(prompt)
             st.markdown(response)
             st.session_state.chat_history.append({"role": "Kyori", "message": response})
