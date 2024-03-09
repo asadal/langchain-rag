@@ -53,6 +53,8 @@ def main():# title nad fabicon
     if 'chat_history' not in st.session_state:
             st.session_state.chat_history = []
 
+    current_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"  # Kyori 아바타의 URL
+
     for content in st.session_state.chat_history:
         with st.chat_message(content["role"]):
             st.markdown(content['message'])
@@ -65,7 +67,7 @@ def main():# title nad fabicon
     # user_input = st.chat_input("Ask Kyori:", key="chat_input")
 
         # 챗봇으로부터 응답 받기
-        with st.chat_message("Kyori", avatar="https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"):
+        with st.chat_message("Kyori", avatar=current_avatar):
             response = chat_with_db(prompt)
             st.markdown(response)
             st.session_state.chat_history.append({"role": "Kyori", "message": response})
