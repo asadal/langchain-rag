@@ -65,7 +65,7 @@ def main():# title nad fabicon
     # user_input = st.chat_input("Ask Kyori:", key="chat_input")
 
         # 챗봇으로부터 응답 받기
-        with st.chat_message("Kyori", avatar="images/kyori.png"):
+        with st.chat_message("Kyori", avatar="https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"):
             response = chat_with_db(prompt)
             st.markdown(response)
             st.session_state.chat_history.append({"role": "Kyori", "message": response})
