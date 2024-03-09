@@ -55,11 +55,12 @@ def main():
         st.session_state.chat_history = []
 
     # Kyori 아바타 URL
-    current_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"
+    kyori_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"
+    user_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/user_01.png"
 
     # 대화 이력을 반복하여 표시하고 각 메시지에 아바타를 포함시킵니다.
     for content in st.session_state.chat_history:
-        with st.chat_message(content["role"], avatar=content.get("avatar")):
+        with st.chat_message(content["role"], avatar=user_avatar):
             st.markdown(content['message'])
 
     # 사용자 입력 받기
@@ -67,14 +68,14 @@ def main():
         with st.chat_message("user"):
             st.markdown(prompt)
             # 사용자 메시지를 대화 이력에 추가, 아바타는 None
-            st.session_state.chat_history.append({"role": "user", "message": prompt, "avatar": None})
+            st.session_state.chat_history.append({"role": "user", "message": prompt, "avatar": user_avatar})
 
         # 챗봇으로부터 응답 받기
         response = chat_with_db(prompt)
-        with st.chat_message("Kyori", avatar=current_avatar):
+        with st.chat_message("Kyori", avatar=kyori_avatar):
             st.markdown(response)
             # Kyori의 메시지를 대화 이력에 추가, 아바타 URL 포함
-            st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": current_avatar})
+            st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": kyori_avatar})
 
 # 메인 함수 실행
 if __name__ == "__main__":
