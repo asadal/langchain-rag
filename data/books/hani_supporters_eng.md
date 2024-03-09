@@ -183,3 +183,7 @@ The sponsorship department email address is supporters@hani.co.kr.
 
 We're sorry to hear that you'd like to discontinue your donation. You can discontinue your donation by logging in to Hankyoreh's homepage (https://www.hani.co.kr) and going to 'My Page' (https://member.hani.co.kr/help/support/sponsor_list.hani). Click 'View Details' under 'Patronage Information' on your My Page and you will find 'Cancel Patronage'. Please note that you must apply for 'Stop Support' at least 2 days before your recurring payment date to avoid additional authorization. If you are having difficulty logging in to cancel your support, please send the following information to supporters@h ani.co.kr. We'll check your information and get back to you.
 ① Name ② mobile phone number ③ email address you entered when you signed up for support.
+
+### I'd like to change my donation method.
+
+Do you want to change your payment method, or do you want to change the type of support, like recurring, one-time, or equity? Let us know what you'd like to do and we'll show you how.
