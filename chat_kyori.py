@@ -58,7 +58,7 @@ def main():# title nad fabicon
             st.markdown(content['message'])
 
     # `st.chat_input`으로 사용자 입력 받기.
-    if prompt := st.chat_input("겨리에게 물어보세요."):
+    if prompt := st.chat_input("한겨레 후원회원이 뭐야?"):
         with st.chat_message("user"):
             st.markdown(prompt)
             st.session_state.chat_history.append({"role": "user", "message": prompt})
