@@ -1,8 +1,9 @@
 import streamlit as st
 from langchain_community.vectorstores import Chroma
-from langchain_community.llms import Ollama
+# from langchain_community.llms import Ollama
 from langchain_community.chat_models import ChatOllama
-from langchain_community.embeddings import GPT4AllEmbeddings  # 수정된 임포트 경로
+from langchain_community.embeddings import OllamaEmbeddings
+# from langchain_community.embeddings import GPT4AllEmbeddings  # 수정된 임포트 경로
 from langchain_core.prompts import ChatPromptTemplate
 # import ollama
 
@@ -20,7 +21,8 @@ PROMPT_TEMPLATE = """
 
 def chat_with_ollama(query_text):
     # GPT4AllEmbeddings 또는 다른 적절한 차원의 임베딩 함수 사용
-    embedding_function = GPT4AllEmbeddings()
+    # embedding_function = GPT4AllEmbeddings()
+    embedding_function = OllamaEmbeddings()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
     # 데이터베이스와 일치하는 차원의 임베딩 모델 사용 확인
     results = db.similarity_search_with_relevance_scores(query_text, k=3)
@@ -73,8 +75,7 @@ def main():
         # Kyori의 메시지를 대화 이력에 추가, kyori_avatar URL 포함
         st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": kyori_avatar})
 
-    # 수정된 부분: 대화 이력을 출력하는 부분을 입력 받는 부분 이후로 옮깁니다.
-    # 이렇게 하면 사용자와 Kyori의 메시지 모두 적절한 아바타와 함께 표시됩니다.
+    # user, Kyori 아바타와 함께 출력
     for content in st.session_state.chat_history:
         role = content["role"]
         avatar = content["avatar"] if "avatar" in content else None
