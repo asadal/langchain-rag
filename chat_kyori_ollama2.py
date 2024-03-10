@@ -22,7 +22,7 @@ PROMPT_TEMPLATE = """
 def chat_with_ollama(query_text):
     # GPT4AllEmbeddings 또는 다른 적절한 차원의 임베딩 함수 사용
     # embedding_function = GPT4AllEmbeddings()
-    embedding_function = OllamaEmbeddings()
+    embedding_function = OllamaEmbeddings(model="gemma:2b")
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
     # 데이터베이스와 일치하는 차원의 임베딩 모델 사용 확인
     results = db.similarity_search_with_relevance_scores(query_text, k=3)
