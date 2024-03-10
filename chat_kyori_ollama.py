@@ -4,7 +4,7 @@ from langchain_community.llms import Ollama
 from langchain_community.chat_models import ChatOllama
 from langchain_community.embeddings import GPT4AllEmbeddings  # 수정된 임포트 경로
 from langchain_core.prompts import ChatPromptTemplate
-import ollama
+# import ollama
 
 CHROMA_PATH = "chroma"
 
