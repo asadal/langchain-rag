@@ -54,28 +54,34 @@ def main():
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
 
-    # Kyori 아바타 URL
+    # Kyori와 사용자 아바타 URL
     kyori_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"
-    user_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/user_01.png"
+    user01_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/user_01.png"
 
     # 대화 이력을 반복하여 표시하고 각 메시지에 아바타를 포함시킵니다.
     for content in st.session_state.chat_history:
-        with st.chat_message(content["role"], avatar=user_avatar):
+        role = content["role"]
+        avatar = content["avatar"] if "avatar" in content else None
+        with st.chat_message(role, avatar=avatar):
             st.markdown(content['message'])
 
     # 사용자 입력 받기
     if prompt := st.chat_input("한겨레 후원회원이 뭔가요?"):
-        with st.chat_message("user"):
-            st.markdown(prompt)
-            # 사용자 메시지를 대화 이력에 추가, 아바타는 None
-            st.session_state.chat_history.append({"role": "user", "message": prompt, "avatar": user_avatar})
+        # 사용자 메시지를 대화 이력에 추가, user01_avatar URL 포함
+        st.session_state.chat_history.append({"role": "user", "message": prompt, "avatar": user01_avatar})
+        response = chat_with_db(prompt)
 
         # 챗봇으로부터 응답 받기
-        response = chat_with_db(prompt)
-        with st.chat_message("Kyori", avatar=kyori_avatar):
-            st.markdown(response)
-            # Kyori의 메시지를 대화 이력에 추가, 아바타 URL 포함
-            st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": kyori_avatar})
+        # Kyori의 메시지를 대화 이력에 추가, kyori_avatar URL 포함
+        st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": kyori_avatar})
+
+    # 수정된 부분: 대화 이력을 출력하는 부분을 입력 받는 부분 이후로 옮깁니다.
+    # 이렇게 하면 사용자와 Kyori의 메시지 모두 적절한 아바타와 함께 표시됩니다.
+    for content in st.session_state.chat_history:
+        role = content["role"]
+        avatar = content["avatar"] if "avatar" in content else None
+        with st.chat_message(role, avatar=avatar):
+            st.markdown(content['message'])
 
 # 메인 함수 실행
 if __name__ == "__main__":
