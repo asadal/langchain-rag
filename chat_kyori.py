@@ -3,12 +3,11 @@ from langchain.vectorstores.chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
-# from create_database import generate_data_store
 import os
-
-# 이 세 줄은 stdlib sqlite3 라이브러리를 pysqlite3 패키지로 교체합니다.
-__import__('pysqlite3')
 import sys
+
+# stdlib sqlite3 라이브러리를 pysqlite3 패키지로 교체
+__import__('pysqlite3')
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 CHROMA_PATH = "chroma"
@@ -35,54 +34,34 @@ def chat_with_db(query_text):
     prompt = prompt_template.format(context=context_text, question=query_text)
     model = ChatOpenAI()
     response = model.invoke(prompt)  # `invoke` 메서드 사용
-    # 응답에서 'content' 키의 값을 반환
-    response_text = response.content
-    return response_text
+    return response.content  # 'content' 키의 값을 반환
 
 def main():
-    # 타이틀과 파비콘 설정
-    st.set_page_config(page_title = "Hani Kyori Bot", page_icon = "https://img.hani.co.kr/imgdb/original/2024/0116/1817053905854034.png")
-
-    # 특징 이미지
+    st.set_page_config(page_title="Hani Kyori Bot", page_icon="https://img.hani.co.kr/imgdb/original/2024/0116/1817053905854034.png")
     st.image("https://flexible.img.hani.co.kr/flexible/normal/240/240/imgdb/original/2021/0524/20210524502287.jpg", width=100)
-
-    # 제목 표시
     st.title("겨리봇")
     st.markdown("한겨레 후원회원 '서포터즈 벗'을 위한 인공지능 챗봇입니다. 후원회원 관련 궁금한 점을 물어보세요.")
 
-    # 세션 상태에 'chat_history'가 없으면 초기화
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []
 
-    # Kyori와 사용자 아바타 URL
     kyori_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/kyori.png"
     user01_avatar = "https://raw.githubusercontent.com/asadal/langchain-rag/main/images/user_01.png"
 
-    # 대화 이력을 반복하여 표시하고 각 메시지에 아바타를 포함시킵니다.
-    for content in st.session_state.chat_history:
-        role = content["role"]
-        avatar = content["avatar"] if "avatar" in content else None
-        with st.chat_message(role, avatar=avatar):
-            st.markdown(content['message'])
-
     # 사용자 입력 받기
     if prompt := st.chat_input("한겨레 후원회원이 뭔가요?"):
-        # 사용자 메시지를 대화 이력에 추가, user01_avatar URL 포함
+        # 사용자 메시지를 대화 이력에 추가
         st.session_state.chat_history.append({"role": "user", "message": prompt, "avatar": user01_avatar})
         response = chat_with_db(prompt)
-
-        # 챗봇으로부터 응답 받기
-        # Kyori의 메시지를 대화 이력에 추가, kyori_avatar URL 포함
+        # 챗봇 응답을 대화 이력에 추가
         st.session_state.chat_history.append({"role": "Kyori", "message": response, "avatar": kyori_avatar})
 
-    # 수정된 부분: 대화 이력을 출력하는 부분을 입력 받는 부분 이후로 옮깁니다.
-    # 이렇게 하면 사용자와 Kyori의 메시지 모두 적절한 아바타와 함께 표시됩니다.
-    for content in st.session_state.chat_history:
-        role = content["role"]
-        avatar = content["avatar"] if "avatar" in content else None
-        with st.chat_message(role, avatar=avatar):
-            st.markdown(content['message'])
+        # 대화 이력을 업데이트하고 출력하는 부분
+        for content in st.session_state.chat_history:
+            role = content["role"]
+            avatar = content["avatar"]
+            with st.chat_message(role, avatar=avatar):
+                st.markdown(content['message'])
 
-# 메인 함수 실행
 if __name__ == "__main__":
     main()
